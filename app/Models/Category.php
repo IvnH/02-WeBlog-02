@@ -9,6 +9,13 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name','slug'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     // Relacion Uno a Muchos
     public function posts()
     {
