@@ -9,6 +9,15 @@ use App\Models\Tag;
 
 class TagController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin.tags.index')->only('index');
+        $this->middleware('can:admin.tags.create')->only('create', 'store');
+        $this->middleware('can:admin.tags.edit')->only('edit', 'update');
+        $this->middleware('can:admin.tags.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -60,17 +69,6 @@ class TagController extends Controller
         return redirect()->route('admin.tags.edit', compact('tag'))->with('info', 'La Etiqueta se Creo con Exito');
 
         /*return $request->all();*/
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tag $tag)
-    {
-        return view('admin.tags.show', compact('tag'));
     }
 
     /**

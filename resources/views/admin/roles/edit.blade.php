@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Mostrar Categorias')
+@section('title', 'Editar Rol')
 
 @section('content_header')
-    <h1>Mostrar Detalles de Categorias</h1>
+    <h1>Editar Rol</h1>
 @stop
 
 @section('content')

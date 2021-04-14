@@ -30,8 +30,9 @@
       </div>
       <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
         <a href="/" class="flex-shrink-0 flex items-center">
-          <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="WeBlog">
-          <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="WeBlog">
+          <img class="block lg:hidden h-8 w-auto rounded-full" src="{{ asset('vendor/adminlte/dist/img/WB.png') }}" alt="WeBlog">
+          <img class="hidden lg:block h-8 w-auto rounded-full" src="{{ asset('vendor/adminlte/dist/img/WB.png') }}" alt="WeBlog">
+          <span class="text-green-200 px-1 py-2 text-sm font-bold">WeBlog</span> 
         </a>
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
@@ -74,7 +75,9 @@
           -->
           <div x-show="open" x-on:clicK.away="open = false" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
             <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Tu Perfil</a>
-            <a href="{{ route('admin.home') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Panel Admin</a>
+            @can('admin.home')
+              <a href="{{ route('admin.home') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Panel Admin</a>
+            @endcan
             <!-- Authentication -->
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

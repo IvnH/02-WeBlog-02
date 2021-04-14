@@ -18,8 +18,9 @@ class UserSeeder extends Seeder
             'name' => 'Usuario WeBlog Principal',
             'email' => 'weblog@example.xyz',
             'password' => bcrypt('12345678')
-        ]);
+        ])->assignRole('Admin');
 
-        User::factory(9)->create();
+        User::factory(99)->create();
+        //User::factory(9)->create();
     }
 }

@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin.posts.index')->only('index');
+        $this->middleware('can:admin.posts.create')->only('create', 'store');
+        $this->middleware('can:admin.posts.edit')->only('edit', 'update');
+        $this->middleware('can:admin.posts.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -64,17 +73,6 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        return view('admin.posts.show', compact('post'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -82,6 +80,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('author', $post);
+
         $categories = Category::pluck('name', 'id');
         $tags = Tag::all();
 
@@ -97,6 +97,8 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        $this->authorize('author', $post);
+
         $post->update($request->all());
 
         if ($request->file('file')) {
@@ -130,6 +132,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('author', $post);
+        
         $post->delete();
 
         return redirect()->route('admin.posts.index', $post)->with('info', 'El Post se Elimino con Exito');

@@ -65,7 +65,7 @@
                             @isset ($post->image)
                                 <img id="picture" src="{{ Storage::url($post->image->url) }}" alt="">
                             @else
-                                <img id="picture" src="https://cdn.pixabay.com/photo/2021/03/29/08/22/peach-flower-6133330_960_720.jpg" alt="">
+                                <img id="picture" src="{{ asset('vendor/adminlte/dist/img/WeBlog-2.png') }}" alt="">
                             @endisset
                             
                         </div>

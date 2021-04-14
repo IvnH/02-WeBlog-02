@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalle Post')
+@section('title', 'Usuarios')
 
 @section('content_header')
-    <h1>Detalles del Post</h1>
+    <h1>Lista de Usuarios</h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    @livewire('admin.users-index')
 @stop
 
 @section('css')
